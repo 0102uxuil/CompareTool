@@ -41,7 +41,7 @@ public class ExcelReader {
 				System.out.println("s：" + i);
 				er = new ExcelRow();
 				er.setRiqi(sheet.getRow(i).getCell(0).getDateCellValue());
-				er.setChepaihao(sheet.getRow(i).getCell(1).getStringCellValue());
+				er.setChepaihao(sheet.getRow(i).getCell(1).getStringCellValue().toString().trim().replaceAll("[^0-9]", ""));
 				er.setShengshu(sheet.getRow(i).getCell(2).getNumericCellValue());
 				er.setYoujia(sheet.getRow(i).getCell(3).getNumericCellValue());
 				er.setShifoupeidui(0);//没有匹配的，为0
