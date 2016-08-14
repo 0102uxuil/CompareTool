@@ -183,7 +183,14 @@ public class MainFrame extends JFrame{
 							cell.setCellValue(arraylist2.get(j).getRiqi());
 //							row.createCell(4).setCellValue(arraylist2.get(j).getRiqi());
 							row.createCell(5).setCellValue(arraylist2.get(j).getChepaihao());
-							row.createCell(6).setCellValue(arraylist2.get(j).getShengshu());
+//							row.createCell(6).setCellValue(arraylist2.get(j).getShengshu());
+							if(arraylist1.get(i).getShengshu() == arraylist2.get(j).getShengshu()){
+								row.createCell(6).setCellValue(arraylist2.get(j).getShengshu());
+							} else {
+								cell = row.createCell(6);
+								cell.setCellStyle(cellStyle2);
+								cell.setCellValue(arraylist2.get(j).getShengshu());
+							}
 							if(arraylist1.get(i).getYoujia() == arraylist2.get(j).getYoujia()){
 								row.createCell(7).setCellValue(arraylist2.get(j).getYoujia());
 							} else {
