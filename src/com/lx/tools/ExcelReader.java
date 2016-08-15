@@ -4,9 +4,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
 import java.util.ArrayList;
 //import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -40,7 +42,13 @@ public class ExcelReader {
 			for(int i=0; i<RowNum; i++){
 				System.out.println("s£º" + i);
 				er = new ExcelRow();
-				er.setRiqi(sheet.getRow(i).getCell(0).getDateCellValue());
+				HSSFCell cell = sheet.getRow(i).getCell(0);
+				if(cell.getCellType() != HSSFCell.CELL_TYPE_NUMERIC){
+					er.setRiqi(Date.valueOf(cell.getStringCellValue()));
+				} else {
+					er.setRiqi(sheet.getRow(i).getCell(0).getDateCellValue());
+				}
+//				er.setRiqi(sheet.getRow(i).getCell(0).getDateCellValue());
 				er.setChepaihao(sheet.getRow(i).getCell(1).getStringCellValue().toString().trim().replaceAll("[^0-9]", ""));
 				er.setShengshu(sheet.getRow(i).getCell(2).getNumericCellValue());
 				er.setYoujia(sheet.getRow(i).getCell(3).getNumericCellValue());
